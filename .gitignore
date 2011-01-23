@@ -9,3 +9,4 @@ project/boot/
 lib_managed/
 *.iml
 .idea
+/test-output
