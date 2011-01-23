@@ -3,6 +3,7 @@ package org.parboiled.examples.json
 import org.parboiled.scala._
 import java.lang.String
 import org.parboiled.errors.{ErrorUtils, ParsingException}
+import org.parboiled.compiler.CompiledParseRunner
 
 /**
  * <p>A complete JSON parser producing an AST representation of the parsed JSON source.</p>
@@ -92,7 +93,7 @@ class JsonParser1 extends Parser {
    * The main parsing method. Uses a ReportingParseRunner (which only reports the first error) for simplicity.
    */
   def parseJson(json: String): AstNode = {
-    val parsingResult = ReportingParseRunner(Json).run(json)
+    val parsingResult = CompiledParseRunner(Json).run(json: Input)
     parsingResult.resultOption match {
       case Some(astRoot) => astRoot
       case None => throw new ParsingException("Invalid JSON source:\n" +
